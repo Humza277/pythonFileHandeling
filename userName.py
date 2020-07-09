@@ -6,39 +6,42 @@
 
 # 2.
 # Reading an image to writing to another file simultaneously
-image_path = 'Ensiten.jpg'
+image_path = 'Ensiten.jpg' # image path for the image
+
+
 class Username:
 
     def __init__(self):
         pass
 
-
     def readUser(self):
-        with open("usertext.txt", "w+") as file:
+        with open("usertext.txt", "w+") as file:  # open up the file
             try:
                 user = input("please input some text ")
-                if len(user) == 0:
+                if len(user) == 0:  # if the user text is equal to zero, raise the exception
                     raise Exception
             except Exception:
-                self.readUser()
+                self.readUser()  # self call to the method to run again
             else:
-                file.write(user)
-                file.seek(0)
-                e = file.read()
+                file.write(user)  # write waht the user said to file
+                file.seek(0)  # track back to the begging of the file
+                e = file.read()  # assign the vairable to read
 
-        with open("nametext.txt", 'w') as file2:
-            file2.write(e)
+        with open("nametext.txt", 'w') as file2:  # open up the second file
+            file2.write(e)  # write to the second file
 
         print("Your text has been written")
         # return self.text_store
 
     def readImage(self):
-        with open(image_path, 'rb') as image_file:
-            image_string = image_file.read()
-            with open("file location.png", 'wb') as dest_image:
-                dest_image.write(image_string)
+        with open(image_path, 'rb') as image_file:  # opens the image
+            image_string = image_file.read()  # appends the file to a variable
+            with open("file location.png", 'wb') as dest_image:  # opens up destination file
+                dest_image.write(image_string)  # writes the previous image to the current file
+
+        print("File has been saved")
 
 
 u = Username()
-#u.readUser()
+# u.readUser()
 u.readImage()
